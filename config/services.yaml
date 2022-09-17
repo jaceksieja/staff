@@ -11,14 +11,40 @@ services:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
 
-    # makes classes in src/ available to be used as services
-    # this creates a service per class whose id is the fully-qualified class name
-    App\:
-        resource: '../src/'
-        exclude:
-            - '../src/DependencyInjection/'
-            - '../src/Entity/'
-            - '../src/Kernel.php'
+    _instanceof:
+        App\Domain\User\Validator\ValidatorConstraintInterface:
+            tags:
+                - { name: app.user.validator }
 
-    # add more service definitions when explicit configuration is needed
-    # please note that last definitions always *replace* previous ones
+    App\Infrastructure\:
+        resource: '../src/Infrastructure/'
+
+    App\Application\:
+        resource: '../src/Application/'
+        exclude:
+            - '../src/Application/Model/'
+            - '../src/Application/Entity/'
+
+    App\Domain\User\Action\:
+        resource: '../src/Domain/User/Action/'
+
+    App\Infrastructure\Controller\:
+        resource: '../src/Infrastructure/Controller/'
+        autowire: fals
+        tags: ['controller.service_arguments']
+        
+    App\Domain\User\Repository\UserRepositoryInterface: '@App\Infrastructure\Repository\UserRepository'
+
+    App\Application\Validation\RegisterValidation:
+        arguments:
+            - !tagged_iterator { tag: app.user.validator }
+
+    App\Application\Integration\ReqresIn\Request\ClientInterface: '@App\Infrastructure\Http\Client'
+    
+    App\Domain\User\PasswordHasherInterface: '@App\Infrastructure\PasswordHasher\UserPasswordPasswordHasher'
+    
+    Symfony\Component\PasswordHasher\Hasher\SodiumPasswordHasher: ~
+    
+    Symfony\Component\PasswordHasher\PasswordHasherInterface: '@Symfony\Component\PasswordHasher\Hasher\SodiumPasswordHasher'
+    
+    App\Domain\User\Factory\UserFactoryInterface: '@App\Infrastructure\Factory\UserEntityFactory'

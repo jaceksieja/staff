@@ -17,6 +17,11 @@ framework:
     php_errors:
         log: true
 
+    http_client:
+        scoped_clients:
+            reqresIn.client:
+                base_uri: '%env(REQRESIN_URL)%'
+
 when@test:
     framework:
         test: true
