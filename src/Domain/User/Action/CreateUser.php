@@ -2,10 +2,10 @@
 
 namespace App\Domain\User\Action;
 
+use App\Domain\User\Action\Event\UserCreated;
 use App\Domain\User\Factory\UserFactoryInterface;
 use App\Domain\User\PasswordHasherInterface;
 use App\Domain\User\Repository\UserRepositoryInterface;
-use App\Domain\User\Action\Event\UserCreated;
 
 class CreateUser
 {
@@ -30,7 +30,7 @@ class CreateUser
             )
         );
 
-        //@todo before send to queue password should be encrypted
+        // @todo before send to queue password should be encrypted
         return new UserCreated(
             $user->getId(),
             $login,

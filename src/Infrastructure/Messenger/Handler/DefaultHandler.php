@@ -10,6 +10,5 @@ class DefaultHandler
 {
     public function __invoke(EventInterface $event): void
     {
-
     }
 }

@@ -15,14 +15,14 @@ class UniqueLoginValidatorConstraint implements ValidatorConstraintInterface
     ) {
     }
 
-    public function getField(): string
+    public function getFieldName(): string
     {
         return 'login';
     }
 
     public function getDetails(): array
     {
-        return [];
+        return ['in not unique'];
     }
 
     public function __invoke(mixed $value): bool

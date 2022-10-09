@@ -4,7 +4,7 @@ namespace App\Domain\User\Validator;
 
 interface ValidatorConstraintInterface
 {
-    public function getField(): string;
+    public function getFieldName(): string;
 
     public function getDetails(): array;
 

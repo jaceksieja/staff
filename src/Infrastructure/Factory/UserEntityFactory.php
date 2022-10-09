@@ -20,7 +20,6 @@ class UserEntityFactory implements UserFactoryInterface
         string $position,
         string $phoneNumber,
     ): UserInterface {
-
         $loginCanonical = ($this->canonicalizer)($login);
 
         return new User(

@@ -25,6 +25,6 @@ class RegisterDTOParamConverter implements ParamConverterInterface
 
     public function supports(ParamConverter $configuration): bool
     {
-        return $configuration->getClass() === RegisterUserDTO::class;
+        return RegisterUserDTO::class === $configuration->getClass();
     }
 }

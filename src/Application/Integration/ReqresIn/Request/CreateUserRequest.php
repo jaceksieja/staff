@@ -26,7 +26,7 @@ class CreateUserRequest implements RequestInterface
             'body' => [
                 'email' => $this->email,
                 'password' => $this->password,
-            ]
+            ],
         ];
     }
 }

@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: 'app_user')]
-class User extends \App\Application\Model\User  implements UserInterface
+class User extends \App\Application\Model\User implements UserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]

@@ -13,9 +13,9 @@ class UpdateUser
     ) {
     }
 
-    public function __invoke(UserInterface $userModel): UserUpdated
+    public function __invoke(UserInterface $user): UserUpdated
     {
-        $user = $this->repository->save($userModel);
+        $user = $this->repository->save($user);
 
         return new UserUpdated(
             $user->getId()

@@ -5,7 +5,7 @@
 1) Download project repository to your local directory:
 
 ```
-git clone git@github.com:ergonode/backend.git
+git clone git@github.com:jaceksieja/staff
 ```
 
 2) Open your terminal in local project, and execute:
@@ -20,7 +20,7 @@ make up
 make sh
 ```
 
-4) Create the shema
+4) Create the schema
 
 ```
 bin/console doctrine:schema:create

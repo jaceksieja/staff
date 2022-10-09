@@ -6,5 +6,5 @@ use App\Application\Model\RegisterUserDTO;
 
 interface RegisterValidatorInterface
 {
-    public function __invoke(RegisterUserDTO $registerUserDTO): ValidationResultInterface;
+    public function __invoke(RegisterUserDTO $registerUserDTO): void;
 }

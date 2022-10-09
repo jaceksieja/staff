@@ -4,8 +4,8 @@ namespace App\Infrastructure\Messenger\Handler;
 
 use App\Application\Action\AssignReqresIoIdToUser;
 use App\Application\Integration\ReqresIn\Action\CreateUserInterface;
-use App\Application\Integration\ReqresIn\EmailResolver\EmailResolverInterface;
 use App\Application\Integration\ReqresIn\ClientInterface;
+use App\Application\Integration\ReqresIn\EmailResolver\EmailResolverInterface;
 use App\Application\Integration\ReqresIn\Request\CreateUserRequest;
 use App\Domain\User\Action\Event\UserCreated;
 use App\Domain\User\Action\GetUser;
@@ -26,10 +26,14 @@ class CreateUserHandler implements CreateUserInterface
     {
         $user = ($this->getUser)($event->getUserId());
 
-        $response = ($this->client)(new CreateUserRequest(
-            ($this->emailResolver)($event->getLogin()),
-            $event->getPassword(),
-        ));
+        $response = ($this->client)(
+            new CreateUserRequest(
+                ($this->emailResolver)(
+                    $event->getLogin()
+                ),
+                $event->getPassword(),
+            )
+        );
 
         ($this->assignReqresIoIdToUser)($user, $response->getId());
     }
