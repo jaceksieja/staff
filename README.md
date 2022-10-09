@@ -14,18 +14,6 @@ git clone git@github.com:jaceksieja/staff
 make up
 ```
 
-3) Login to php container, and execute:
-
-```
-make sh
-```
-
-4) Create the schema
-
-```
-bin/console doctrine:schema:create
-```
-
 ## Usage
 
 Endpoint:
